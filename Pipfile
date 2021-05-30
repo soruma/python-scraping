@@ -8,6 +8,7 @@ dash = "*"
 sqlalchemy = "*"
 pandas = "*"
 psycopg2 = "*"
+gunicorn = "*"
 
 [dev-packages]
 

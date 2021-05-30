@@ -1,0 +1,25 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres:11
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    command: 'pipenv run python view.py'
+    environment:
+      DATABASE_URL: 'postgres://postgres:password@db'
+      IS_DOCKER: 'true'
+    volumes:
+      - .:/app
+    ports:
+      - 8050:8050
+    depends_on:
+      - db
+
+volumes:
+  pg_data:

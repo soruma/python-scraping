@@ -8,7 +8,7 @@ import datetime
 import pandas as pd
 
 databese_file = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data.db')
-engine = create_engine(os.environ.get('DATABASE_URL') or 'sqlite:///' + databese_file, convert_unicode=True , echo=True)
+engine = create_engine(os.environ.get('DATABASE_URL').replace("://", "ql://", 1) or 'sqlite:///' + databese_file, convert_unicode=True , echo=True)
 db_session = scoped_session(
                 sessionmaker(
                     autocommit = False,
